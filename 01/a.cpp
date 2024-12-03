@@ -16,7 +16,7 @@ int main()
 
     std::string line;
     std::multiset<int> col1, col2;
-    int lines_read = 0;
+    unsigned lines_read = 0;
     while (std::getline(file, line)) {
         std::istringstream iss(line);
         int num1, num2;
@@ -29,7 +29,7 @@ int main()
         lines_read++;
     }
     std::cout << "lines_read = " << lines_read << ". col1.size = " << col1.size() << ". col2.size = " << col2.size() << "\n";
-    int distance = 0;
+    unsigned distance = 0;
     for ( int i = 0; i < lines_read; ++i) {
         auto col1_it = col1.begin();
         std::advance(col1_it, i);
