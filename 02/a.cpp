@@ -13,7 +13,7 @@ bool is_safe(const std::vector<int>& report)
         return false;
 
     bool increasing = report[0] < report[1];
-    for(int i = 1; i < report.size()-1; ++i) {
+    for(auto i = 1u; i < report.size()-1; ++i) {
         if(increasing) {
             if(report[i] >= report[i+1] || (report[i+1] - report[i]) > DIFF )
                 return false;
