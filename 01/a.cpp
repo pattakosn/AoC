@@ -30,7 +30,7 @@ int main()
     }
     std::cout << "lines_read = " << lines_read << ". col1.size = " << col1.size() << ". col2.size = " << col2.size() << "\n";
     unsigned distance = 0;
-    for ( int i = 0; i < lines_read; ++i) {
+    for ( auto i = 0u; i < lines_read; ++i) {
         auto col1_it = col1.begin();
         std::advance(col1_it, i);
         auto col2_it = col2.begin();
