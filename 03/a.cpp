@@ -1,13 +1,12 @@
-//#include <cstdlib>
-#include <iostream>
+// #include <cstdlib>
 #include <fstream>
-//#include <sstream>
+#include <iostream>
+// #include <sstream>
+#include <regex>
 #include <string>
 #include <vector>
-//#include <vector>
 
-int main() 
-{
+int main() {
     const std::string fileName = "../../03/03.txt";
     std::ifstream file(fileName);
     if (!file.is_open()) {
@@ -16,16 +15,29 @@ int main()
     }
 
     std::string line;
+    unsigned long result = 0;
     while (std::getline(file, line)) {
         std::cout << "Read line of size: " << line.size() << std::endl;
-        size_t position = line.find("mul(");
-        
-        while (position != std::string::npos) {
-            positions.push_back(position); // Store the position
-            position = line.find("mul(", position + 1); // Search from the next character
+        // size_t cur_position = line.find("mul(");
+        // while (cur_position != std::string::npos) {
+        //     std::cout<< "potential instruction: " <<
+        //     std::string(line.substr(cur_position, 12)) << "\n";
+        //
+        //     cur_position = line.find("mul(", cur_position + 1);
+        std::regex pattern(R"(mul\((\d{1,3}),(\d{1,3})\))");
+        //std::smatch match;
+        std::match_results<std::string::const_iterator> match;
+        auto start = line.cbegin();
+        auto end = line.cend();
+        while (std::regex_search(start, end, match, pattern)) {
+            int x = std::stoi(match[1].str());
+            int y = std::stoi(match[2].str());
+            std::cout<< "Found: " << x << " " << y << "\n";
+            result += x * y;
+            start = match.suffix().first;
         }
     }
-
+    std::cout << "message= " << result << "\n";
     file.close();
     return EXIT_SUCCESS;
 }
