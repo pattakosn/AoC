@@ -20,3 +20,4 @@ endif()
 
 add_executable(01a 01/a.cpp)
 add_executable(01b 01/b.cpp)
+add_executable(02a 02/a.cpp)
