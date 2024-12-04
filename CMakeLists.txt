@@ -17,3 +17,5 @@ else()
     add_compile_options(-Wall -Wextra -Wpedantic)
     #add_link_options(-fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment)
 endif()
+
+add_executable(01a 01/a.cpp)
