@@ -1,8 +1,6 @@
 #include <fstream>
 #include <iostream>
 #include <regex>
-#include <string>
-#include <vector>
 
 int main() {
     const std::string fileName = "../../03/03.txt";
@@ -16,14 +14,7 @@ int main() {
     unsigned long result = 0;
     while (std::getline(file, line)) {
         std::cout << "Read line of size: " << line.size() << std::endl;
-        // size_t cur_position = line.find("mul(");
-        // while (cur_position != std::string::npos) {
-        //     std::cout<< "potential instruction: " <<
-        //     std::string(line.substr(cur_position, 12)) << "\n";
-        //
-        //     cur_position = line.find("mul(", cur_position + 1);
         std::regex pattern(R"(mul\((\d{1,3}),(\d{1,3})\))");
-        //std::smatch match;
         std::match_results<std::string::const_iterator> match;
         auto start = line.cbegin();
         auto end = line.cend();
