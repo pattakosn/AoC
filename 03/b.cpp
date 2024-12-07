@@ -6,7 +6,7 @@ int main() {
     const std::string fileName = "../../03/03.txt";
     std::ifstream file(fileName);
     if (!file.is_open()) {
-        std::cerr << "Error: Could not open file " << fileName << std::endl;
+        std::cerr << "Error: Could not open file " << fileName << "\n";
         return EXIT_FAILURE;
     }
 
@@ -16,7 +16,7 @@ int main() {
     std::string line;
     unsigned long result = 0;
     while (std::getline(file, line)) {
-        //std::cout << "Read line of size: " << line.size() << std::endl;
+        //std::cout << "Read line of size: " << line.size() << "\n";
         std::smatch match;
         auto searchStart = line.cbegin();
         while (std::regex_search(searchStart, line.cend(), match, *pattern)) {
