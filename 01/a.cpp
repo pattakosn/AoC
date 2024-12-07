@@ -10,7 +10,7 @@ int main()
     const std::string fileName = "../../01/01.txt";
     std::ifstream file(fileName);
     if (!file.is_open()) {
-        std::cerr << "Error: Could not open file " << fileName << std::endl;
+        std::cerr << "Error: Could not open file " << fileName << "\n";
         return EXIT_FAILURE;
     }
 
