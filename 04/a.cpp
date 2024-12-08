@@ -6,11 +6,11 @@
 void line_search(std::string& line, std::string pattern, size_t& times)
 {
     size_t pos = 0;
-    size_t local = 0;
+    //size_t local = 0;
     while ((pos = line.find(pattern, pos)) != std::string::npos) {
         pos += pattern.length();
         times++;
-        local++;
+    //    local++;
     }
     //std::cout << "local matches: " << local << " ";
 }
@@ -40,9 +40,9 @@ size_t search_diagonal(const std::vector<std::string>& grid, const std::string& 
 
     size_t hits = 0;
 
-    auto check_diag_TLBR = [&](size_t row0, size_t col0) {
+    auto check_diag_TLBR = [&](int row0, int col0) {
         std::string diag = "";
-        for (size_t i = 0; row0 + i < rows && col0 + i < cols; ++i)
+        for (int i = 0; (row0 + i) < rows && (col0 + i) < cols; ++i)
             diag += grid[row0 + i][col0 + i];
         size_t pos = diag.find(target);
         while (pos != std::string::npos) {
@@ -51,9 +51,9 @@ size_t search_diagonal(const std::vector<std::string>& grid, const std::string& 
         }
     };
 
-    auto check_diag_TRBL = [&](size_t row0, size_t col0) {
+    auto check_diag_TRBL = [&](int row0, int col0) {
         std::string diag = "";
-        for (size_t i = 0; (row0 + i) < rows && (col0 - i) >= 0; ++i)
+        for (int i = 0; (row0 + i) < rows && (col0 - i) >= 0; ++i)
             diag += grid[row0 + i][col0 - i];
         size_t pos = diag.find(target);
         while (pos != std::string::npos) {
@@ -63,12 +63,12 @@ size_t search_diagonal(const std::vector<std::string>& grid, const std::string& 
     };
 
 
-    for (size_t row = 0; row < rows; ++row)
+    for (int row = 0; row < rows; ++row)
         check_diag_TLBR(row, 0);
-    for (size_t col = 1; col < cols; ++col)
+    for (int col = 1; col < cols; ++col)
         check_diag_TLBR(0, col);
 
-    for (size_t row = 0; row < rows; ++row)
+    for (int row = 0; row < rows; ++row)
         check_diag_TRBL(row, cols - 1);
     for (int col = cols - 2; col >= 0; --col) 
         check_diag_TRBL(0, col);
@@ -104,7 +104,7 @@ int main() {
         line_search(it, samx, hits);
         //std::cout << ", total: " << hits << "\n";
     }
-    std::cout << "Total hor+transposed hits: " << hits << "\n";
+    std::cout << "Total hor + transposed hits: " << hits << "\n";
     
     auto diagonals_xmas = search_diagonal(table, xmas);
     std::cout << "xmas diagonals: " << diagonals_xmas  << "\n";
